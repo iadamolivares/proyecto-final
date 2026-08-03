@@ -1,6 +1,10 @@
-
+import { Header } from "./components/Header.jsx"
 function App() {
-  return <h1>Hola!</h1>
+  return (
+    <main>
+    <Header/>
+    </main>
+  )     
 }
 
 export {App}
