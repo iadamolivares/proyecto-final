@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { Header } from "./components/Header.jsx";
+import { WriteArea } from "./components/WriteArea.jsx";
+import { Controlls } from "./components/Controlls.jsx";
+import { Stats } from "./components/Stats.jsx";
+import { LetterDensity } from "./components/LetterDensity.jsx";
+
 const App = () => {
   const [text, setText] = useState(
     "Esto es un texto de prueba, puedes modificarlo.",
@@ -10,7 +15,15 @@ const App = () => {
 
   const [limitValue, setLimitValue] = useState(10);
 
-  const [showAll, setShowAll] = useState(false)
+  const [showAll, setShowAll] = useState(false);
+
+  const handleExcludeSpaces = () => {
+    setExcludeSpaces(!excludeSpaces);
+  };
+
+  const handleLimitValue = () => {
+    setLimitValue(!limitValue);
+  };
 
   const characters = excludeSpaces
     ? text.replace(/\s/g, "").length
@@ -43,34 +56,31 @@ const App = () => {
     setText(newText);
   };
 
-  const cleanText = text.toLowerCase().replace(/[^a-záéíóú0-9ñü]/g, "")
-  const total = cleanText.length
+  const cleanText = text.toLowerCase().replace(/[^a-záéíóú0-9ñü]/g, "");
+  const total = cleanText.length;
 
-  const dictionaryLetters = {}
+  const dictionaryLetters = {};
 
-  cleanText.split("").forEach(letter => {
-    dictionaryLetters[letter] = (dictionaryLetters[letter] || 0) + 1
-  })
+  cleanText.split("").forEach((letter) => {
+    dictionaryLetters[letter] = (dictionaryLetters[letter] || 0) + 1;
+  });
 
-  const letters = Object.entries(dictionaryLetters).map(dataLetter => {
-    const letter = dataLetter[0]
-    const amaountLetter = dataLetter[1]
+  const letters = Object.entries(dictionaryLetters).map((dataLetter) => {
+    const letter = dataLetter[0];
+    const amaountLetter = dataLetter[1];
 
     const infoToRenderLetter = {
       letterName: letter,
       amount: amaountLetter,
-      percentage: (amaountLetter/ total) * 100
-    }
+      percentage: (amaountLetter / total) * 100,
+    };
 
-    return infoToRenderLetter
-  })
+    return infoToRenderLetter;
+  });
 
-  const sortLetters = letters.sort((a, b) => b.amount - a.amount)
+  const sortLetters = letters.sort((a, b) => b.amount - a.amount);
 
-  const visibleLetters = showAll ? sortLetters : sortLetters.slice(0, 5)
-   
-
-  
+  const visibleLetters = showAll ? sortLetters : sortLetters.slice(0, 5);
 
   return (
     <main>
@@ -79,54 +89,29 @@ const App = () => {
         Analyze your text <br />
         in real-time.
       </h2>
-      <textarea
-        placeholder="Escribe tu texto..."
-        onChange={handleChangeTextarea}
-        value={text}
-      ></textarea>
-      <div>
-        <label>
-          <input
-            type="checkbox"
-            checked={excludeSpaces}
-            onChange={() => setExcludeSpaces(!excludeSpaces)}
-          />
-          Excluir espacios
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={limitCharacter}
-            onChange={handleChangeInputLimit}
-          />
-          Limite de caracteres
-        </label>
-        {limitCharacter && (
-          <input
-            type="number"
-            value={limitValue}
-            onChange={(e) => setLimitValue(e.target.value)}
-          />
-        )}
-      </div>
-      <p>Cantidad de caracteres: {characters}</p>
-      <p>Cantidad de palabras: {words}</p>
-      <p>Cantidad de oraciones: {sentences}</p>
-      <p>Tiempo aprox. de lectura: ~{readingTime} min</p>
-      <section>
-        <h2>Cantidad de letras</h2>
-        <button onClick={() => setShowAll(!showAll)}>{showAll ? "Ver menos 🔼" : "Ver todos 🔽"}</button>
-        <article>
-          {
-            visibleLetters.map(letter => 
-            <div key={letter.letterName}>
-            <span>{letter.letterName.toLocaleUpperCase()}</span>
-            <meter min="0" max="100" value={letter.percentage}></meter>
-            <span>{letter.amount}({letter.percentage.toFixed(1)})%</span>
-          </div>)
-          }
-        </article>
-      </section>
+      <WriteArea handleChangeTextarea={handleChangeTextarea} text={text} />
+      <Controlls
+        excludeSpaces={excludeSpaces}
+        handleExcludeSpaces={handleExcludeSpaces}
+        limitCharacter={limitCharacter}
+        handleChangeInputLimit={handleChangeInputLimit}
+        limitValue={limitValue}
+        handleLimitValue={handleLimitValue}
+      />
+
+      <Stats
+        characters={characters}
+        words={words}
+        sentences={sentences}
+        readingTime={readingTime}
+      />
+      {text && (
+        <LetterDensity
+          visibleLetters={visibleLetters}
+          setShowAll={setShowAll}
+          showAll={showAll}
+        />
+      )}
     </main>
   );
 };
