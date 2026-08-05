@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
-body {
+main {
   padding: 20px;
+  height: 100vh;
+}
+
+main.dark-theme {
+  background-color: rgb(41, 41, 41);
+  color: white;
+}
+
+main.dark-theme h2 {
+  color: rgb(185, 111, 255);
 }
