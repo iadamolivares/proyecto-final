@@ -98,10 +98,10 @@ main.dark-theme .powerbutton button {
 
 
 main {
-  padding: 20px;
+  padding: 10px;
   height: 100vh;
   background-color: var(--primary);
-  margin: 10px auto;
+  margin: 0 auto;
   width: 600px;
   padding: 0 10px 0 10px;
 }
@@ -120,8 +120,8 @@ main {
   font-family: "Inter";
     width: 430px;
     text-align: center;
-    margin: 0 auto;
-    padding: 35px 0 ; 
+    margin: 0 auto  ;
+    padding: 20px 0 ; 
 }
 
 main textarea {

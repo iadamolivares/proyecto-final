@@ -1,4 +1,5 @@
 import angle1 from "../assets/angle.png";
+import angle2 from "../assets/angleup.png"
 const LetterDensity = ({ visibleLetters, showAll, setShowAll }) => {
   return (
     <>
@@ -19,11 +20,12 @@ const LetterDensity = ({ visibleLetters, showAll, setShowAll }) => {
                 </span>
               </div>
             ))}
+          </article>
             <button className="btnsm" onClick={() => setShowAll(!showAll)}>
               {showAll ? (
                 <>
                   Ver menos
-                  <img src={angle1} alt="Ver menos" />
+                  <img src={angle2} alt="Ver menos" />
                 </>
               ) : (
                 <>
@@ -32,7 +34,6 @@ const LetterDensity = ({ visibleLetters, showAll, setShowAll }) => {
                 </>
               )}
             </button>
-          </article>
         </section>
       }
     </>

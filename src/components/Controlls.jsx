@@ -5,7 +5,7 @@ const Controlls = ({
   handleChangeInputLimit,
   limitValue,
   handleLimitValue,
-  readingTime
+  readingTime,
 }) => {
   return (
     <div className="checkboxcomponent">
@@ -24,16 +24,16 @@ const Controlls = ({
           onChange={handleChangeInputLimit}
         />
         Limite de caracteres
-        </label>
+      </label>
       <input
-    className={`inputNumber ${limitCharacter ? "show" : "hide"}`}
-    type="number"
-    value={limitValue}
-    onChange={(e) => handleLimitValue(e.target.value)}
-/>
+        className={`inputNumber ${limitCharacter ? "show" : "hide"}`}
+        type="number"
+        value={limitValue}
+        onChange={(e) => handleLimitValue(e.target.value)}
+      />
       <div className="readingTimeComp">
-          <p>Tiempo de lectura: ~{readingTime} min</p>
-        </div>
+        <p>Tiempo de lectura: ~{readingTime} min</p>
+      </div>
     </div>
   );
 };
