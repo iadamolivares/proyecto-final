@@ -5,10 +5,11 @@ const Controlls = ({
   handleChangeInputLimit,
   limitValue,
   handleLimitValue,
+  readingTime
 }) => {
   return (
-    <div>
-      <label>
+    <div className="checkboxcomponent">
+      <label className="exclude">
         <input
           type="checkbox"
           checked={excludeSpaces}
@@ -16,21 +17,23 @@ const Controlls = ({
         />
         Excluir espacios
       </label>
-      <label>
+      <label className="character">
         <input
           type="checkbox"
           checked={limitCharacter}
           onChange={handleChangeInputLimit}
         />
         Limite de caracteres
-      </label>
-      {limitCharacter && (
-        <input
-          type="number"
-          value={limitValue}
-          onChange={(e) => handleLimitValue(e.target.value)}
-        />
-      )}
+        </label>
+      <input
+    className={`inputNumber ${limitCharacter ? "show" : "hide"}`}
+    type="number"
+    value={limitValue}
+    onChange={(e) => handleLimitValue(e.target.value)}
+/>
+      <div className="readingTimeComp">
+          <p>Tiempo de lectura: ~{readingTime} min</p>
+        </div>
     </div>
   );
 };

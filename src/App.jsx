@@ -6,6 +6,7 @@ import { Stats } from "./components/Stats.jsx";
 import { LetterDensity } from "./components/LetterDensity.jsx";
 import { ThemeContext } from "./context/ThemeContext.jsx";
 
+
 const App = () => {
   const [text, setText] = useState(
     "Esto es un texto de prueba, puedes modificarlo.",
@@ -25,8 +26,8 @@ const App = () => {
     setExcludeSpaces(!excludeSpaces);
   };
 
-  const handleLimitValue = () => {
-    setLimitValue(!limitValue);
+  const handleLimitValue = (value) => {
+    setLimitValue(Number(value));
   };
 
   const characters = excludeSpaces
@@ -87,13 +88,17 @@ const App = () => {
   const visibleLetters = showAll ? sortLetters : sortLetters.slice(0, 5);
 
   return (
+      <div className="pagweb">
     <main className={`${dark ? "dark-theme" : ""}`}>
       <Header dark={dark}
       handleDarkTheme={handleDarkTheme}/>
+      <div className="tittle">
+
       <h2>
         Analiza tu texto <br />
         en tiempo real.
       </h2>
+      </div>
       <WriteArea handleChangeTextarea={handleChangeTextarea} text={text} />
       <Controlls
         excludeSpaces={excludeSpaces}
@@ -102,22 +107,23 @@ const App = () => {
         handleChangeInputLimit={handleChangeInputLimit}
         limitValue={limitValue}
         handleLimitValue={handleLimitValue}
-      />
+        readingTime={readingTime}
+        />
 
       <Stats
         characters={characters}
         words={words}
         sentences={sentences}
-        readingTime={readingTime}
-      />
+        />
       {text && (
         <LetterDensity
-          visibleLetters={visibleLetters}
-          setShowAll={setShowAll}
-          showAll={showAll}
+        visibleLetters={visibleLetters}
+        setShowAll={setShowAll}
+        showAll={showAll}
         />
       )}
     </main>
+      </div>
   );
 };
 

@@ -1,12 +1,29 @@
-const Stats = ({characters, words, sentences, readingTime})  => {
-    return(
-        <div>
-        <p>Cantidad de caracteres: {characters}</p>
-      <p>Cantidad de palabras: {words}</p>
-      <p>Cantidad de oraciones: {sentences}</p>
-      <p>Tiempo de lectura: ~{readingTime} min</p>
-      </div>
-    )
-}
+import card1 from "../assets/card-orange.png"
+import card2 from "../assets/card-tomato.png"
+import card3 from "../assets/card-violet.png"
 
-export {Stats}
+const Stats = ({ characters, words, sentences }) => {
+  return (
+    <section className="stats">
+
+        <div className="totalCharacters">
+          <span>{characters}</span>
+          <p>Cantidad de caracteres: </p>
+        </div>
+
+        <div className="wordCount">
+          <span>{words}</span> 
+          <p>Cantidad de palabras:</p>
+        </div>
+
+        <div className="sentenceCount">
+          <span>{sentences}</span>
+          <p>Cantidad de oraciones: </p>
+        </div>
+
+    
+    </section>
+  );
+};
+
+export { Stats };
