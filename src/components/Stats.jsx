@@ -8,17 +8,17 @@ const Stats = ({ characters, words, sentences }) => {
 
         <div className="totalCharacters">
           <span>{characters}</span>
-          <p>Cantidad de caracteres: </p>
+          <p>Cantidad de caracteres </p>
         </div>
 
         <div className="wordCount">
           <span>{words}</span> 
-          <p>Cantidad de palabras:</p>
+          <p>Cantidad de palabras </p>
         </div>
 
         <div className="sentenceCount">
           <span>{sentences}</span>
-          <p>Cantidad de oraciones: </p>
+          <p>Cantidad de oraciones </p>
         </div>
 
     
